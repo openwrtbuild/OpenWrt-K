@@ -93,7 +93,7 @@ def clone(repo: str, path: str, branch: str | None) -> tuple[str, str | None, st
 def prepare(configs: dict[str, dict[str, Any]]) -> None:
     # clone拓展软件源码
     logger.info("开始克隆拓展软件源码...")
-    to_clone: set[tuple[str, str]] = {("https://github.com/immortalwrt/packages", ""),
+    to_clone: set[tuple[str, str]] = {("https://github.com/immortalwrt/packages", "openwrt-23.05"),
                                        ("https://github.com/chenmozhijin/turboacc", "package"),
                                        ("https://github.com/pymumu/openwrt-smartdns", "master"),
                                        ("https://github.com/pymumu/luci-app-smartdns", "master"),
@@ -217,7 +217,7 @@ def prepare_cfg(config: dict[str, Any],
     logger.info("%s开始更新netdata、smartdns...", cfg_name)
     # 更新netdata
     shutil.rmtree(os.path.join(openwrt.path, "feeds", "packages", "admin", "netdata"), ignore_errors=True)
-    shutil.copytree(os.path.join(cloned_repos[("https://github.com/immortalwrt/packages", "")], "admin", "netdata"),
+    shutil.copytree(os.path.join(cloned_repos[("https://github.com/immortalwrt/packages", "openwrt-23.05")], "admin", "netdata"),
                         os.path.join(openwrt.path, "feeds", "packages", "admin", "netdata"), symlinks=True)
     # 更新smartdns
     shutil.rmtree(os.path.join(openwrt.path, "feeds", "luci", "applications", "luci-app-smartdns"), ignore_errors=True)
